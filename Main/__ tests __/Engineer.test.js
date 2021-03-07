@@ -1,18 +1,19 @@
 const Engineer = require("../lib/Engineer");
 
-it ("should instantiate Employee instance", () => {
-    const e = new Engineer ();
-    expect(typeof (e)).toBe("object");
+test ("Should set GitHub account via constructor", () => {
+    const testValue = "GitHubUser";
+    const e = new Engineer ("Foo", 1, "test@test.com", testValue);
+    expect(e.github).toBe("testValue");
 });
 
-it ("should set name via constructor arguments", () => {
-    const name = Joshua;
-    const e = new Engineer (name);
-    expect(e.name).toBe(name);
+test ("getRole() should return \Engineer\"", () => {
+    const testValue = Engineer;
+    const e = new Engineer ("Foo", 1, "test@test.com", "GitHubUser");
+    expect(e.getRole).toBe(testValue);
 });
 
-it ("should set id with constructor param", () => {
-    const testValue = 100;
-    const e = new Engineer ("Foo", testValue);
-    expect(e.id).toBe(testValue);
+test ("should get GitHub username via getGithub()", () => {
+    const testValue = "GitHubUser";
+    const e = new Engineer ("Foo", 1, "test@test.com", testValue);
+    expect(e.getGithub()).toBe(testValue);
 });

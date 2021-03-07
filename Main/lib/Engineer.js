@@ -10,14 +10,14 @@ class Engineer extends Employee{
     getUsername() {
         return this.username;
     }
-    getTitle() {
+    getRole() {
         return this.title;
     }
 };
 
     const engineers = [
-        new Engineer ("John Smith", 004, "jsmith@job.com", "JSmith92"),
-        new Engineer ("Allie Gold", 005, "agold@job.com", "AllGold88")
+        new Engineer ("John Smith", 04, "jsmith@job.com", "JSmith92"),
+        new Engineer ("Allie Gold", 05, "agold@job.com", "AllGold88")
     ];
 
     module.exports = {

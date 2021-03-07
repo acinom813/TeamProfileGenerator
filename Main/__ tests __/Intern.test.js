@@ -1,18 +1,19 @@
-const Employee = require("../lib/Employee");
+const Intern = require("../lib/Intern");
 
-it ("should instantiate Employee instance", () => {
-    const e = new Employee ();
-    expect(typeof (e)).toBe("object");
+test("Can set school via constructor", () => {
+    const testValue = "UNC";
+    const e = new Intern ("Foo", 1, "test@test.com", testValue);
+    expect(e.school).toBe(testValue);
 });
 
-it ("should set name via constructor arguments", () => {
-    const name = Katy;
-    const e = new Employee (name);
-    expect(e.name).toBe(name);
+test ("getRole() should return \"Intern\"", () => {
+    const testValue = "Intern";
+    const e = new Intern ("Foo", 1, "test@test.com", testValue);
+    expect(e.getRole()).toBe(testValue);
 });
 
-it ("should set id with constructor param", () => {
-    const testValue = 100;
-    const e = new Employee ("Foo", testValue);
-    expect(e.id).toBe(testValue);
+test("Can get school via getSchool()", () => {
+    const testValue = "UNC";
+    const e = new Intern ("Foo", 1, "test@test.com", testValue);
+    expect(e.getSchool()).toBe(testValue);
 });
