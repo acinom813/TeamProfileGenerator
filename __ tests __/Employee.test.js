@@ -6,23 +6,23 @@ describe("Employee", () => {
     expect(typeof(e)).toBe("object");
 });
 
-test ("should instantiate Employee instance", () => {
+it ("should instantiate Employee instance", () => {
     const e = new Employee ();
     expect(typeof (e)).toBe("object");
 });
 
-test ("should set name via constructor argument", () => {
+it ("should set name via constructor argument", () => {
     const name = Annie;
     const e = new Employee (name);
     expect(e.name).toBe(name);
 });
 
-test ("should set id with constructor param", () => {
+it ("should set id with constructor param", () => {
     const testValue = 100;
     const e = new Employee ("Foo", testValue);
     expect(e.id).toBe(testValue);
 });
-test ("Should set email via constructor argument", () => {
+it ("Should set email via constructor argument", () => {
     const testValue = "test@test.com";
     const e = new Employee("Foo", 1, testValue);
     expect(e.email).toBe(testValue);
