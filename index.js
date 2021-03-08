@@ -7,7 +7,6 @@ const Engineer = require("./lib/engineer")
 const Intern = require("./lib/intern")
 const Manager = require("./lib/manager")
 
-let finalTeamArray = [];
 
 function startApp() {
     startHtml();
@@ -121,68 +120,61 @@ function addMembers() {
                 let data = "";
                 if (role === "Engineer") {
                     const gitHub = member.getGithub();
-                    data = ``
+                    data = `<div class="card-banner" style="width: 18rem;">
+                    <div class="card-header card-top" id="eng-name">${name} <br> Engineer</div>
+                        <div class="card-body">
+                             <p class="card-text"> Employee ID: ${id} </p>
+                             <p class="card-text"> Employee Email: ${email}</p>
+                             <p class="card-text"> GitHub Username: ${gitHub}</p>
+                        </div>
+                    </div>`;
+                }else if (role === "Intern") {
+                    const school = memeber.getSchool();
+                    data = `div class="card-banner" style="width: 18rem;">
+                    <div class="card-header card-top" id="intern-name">${name} <br> Intern </div>
+                        <div class="card-body">
+                             <p class="card-text"> Employee ID: ${id} </p>
+                                <p class="card-text"> Employee Email: ${email}</p>
+                                <p class="card-text"> Intern's School: ${school} </p>
+                        </div>
+                    </div> `;
+                }else {
+                    const officePhone = member.getOfficeNumber();
+                    data = `<div class = "card-container">
+                    <div class="card-banner" style="width: 18rem;">
+                        <div class="card-header card-top" id="mgr-name">${name} <br> <img src=""> Manager </div>
+                            <div class="card-body">
+                                <p class="card-text"> Employee ID: ${id}</p>
+                                <p class="card-text"> Office Phone: ${officePhone} </p>
+                                <p class="card-text"> Employee Email: ${email}></p>
+                            </div>
+                        </div>`;
                 }
-            })
+                console.log("adding team member");
+                fs.appendFile("./output/team.html", data, function(err) {
+                    if (err) {
+                        return reject(err);
+                    };
+                        return resolve();
+            });
+            });
             
             
         }
    
-   
-   
-   
-    
-         <div class="banner-bar">
-            <h1>${finalTeamArray[0]}</h1>
-        </div>
-        <div class="card-container">
-        `
-            htmlArray.push(htmlBeginning);
+        function finishHtml() {
+            const html = `</div>
+            </div>
+            
+            </body>
+            </html>`;
 
-            for(let i = 1; i < finalTeamArray.length; i++) {
-                let object = `
-                <div class="member-card">
-                    <div class="card-top">
-                        <h2>${finalTeamArray[i].name}</h2>
-                        <h2>${finalTeamArray[i].title}</h2>
-                    </div>
-                <div class= "card-bottom">
-                    <p>Employee ID: ${finalTeamArray[i].id}</p>
-                    <p>Email: <a href="mailto:${finalTeamArray[i].email}">${finalTeamArray[i].email}</a></p>
-                `
-                    if(finalTeamArray[i].mgroffice) {
-                        object +=`
-                        <p>${finalTeamArray[i].mgroffice}</p>
-                        `
-                    }
-                    if(finalTeamArray[i].username) {
-                        object += `
-                        <p>GitHub: <a href="https://github.com/${finalTeamArray[i].github}">${finalTeamArray[i].github}</a></p>
-                    `
-                    }
-                    if(finalTeamArray[i].school){
-                        object += `
-                        <p>School: ${finalTeamArray[i].school}</p>
-                        `
-                    }
-                    object =+ `
-                    </div>
-                    </div>
-                    `
-                    htmlArray.push(object)
-            }
-
-            const htmlEnd = `
-                </div>
-                </body>
-                </html>
-                `
-            htmlArray.push(htmlEnd);
-
-            fs.writeFile(`./team.html/${finalTeamArray[0]}.html`, htmlArray.join(""), function(err) {
-
-            })
+            fs.appendFile("./output/team.html", html, function(err) {
+                if (err) {
+                    console.log(err);
+                };
+            });
+            console.log("end");
         }
     }
-
         startApp();
